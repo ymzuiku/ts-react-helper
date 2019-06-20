@@ -1,6 +1,6 @@
 {
   "name": "ts-react-helper",
-  "version": "0.1.2",
+  "version": "1.0.0",
   "main": "index.js",
   "repository": "git@github.com:ymzuiku/tslint-react-cli.git",
   "license": "MIT",
@@ -8,6 +8,6 @@
     "deepmerge": "^3.2.1"
   },
   "bin": {
-    "ts-react-cli": "bin.js"
+    "init": "bin.js"
   }
 }
