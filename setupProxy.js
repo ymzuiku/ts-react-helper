@@ -4,8 +4,8 @@ const proxy = require('http-proxy-middleware');
 
 module.exports = function(app) {
   app.use(
-    proxy('/leviathan-reports/corp/**', {
-      target: 'http://192.168.1.249:11601',
+    proxy('/proxy-url/corp/**', {
+      target: 'http://127.0.0.1:4100',
       changeOrigin: true,
     }),
   );
