@@ -5,6 +5,9 @@
     "react-hooks/exhaustive-deps": false
   },
   "rules": {
+    "strict-comparisons": false,
+    "object-literal-sort-keys": false,
+    "no-floating-promises": false,
     "prefer-for-of": false,
     "prefer-switch": false,
     "comment-format": false,
@@ -29,7 +32,7 @@
     "arrow-return-shorthand": false,
     "variable-name": false,
     "file-name-casing": [false, "camel-case"],
-    "no-import-side-effect": [true, { "ignore-module": "(\\.html|\\.css|\\.scss|\\.less)$" }]
+    "no-import-side-effect": [false, { "ignore-module": "(\\.html|\\.css|\\.scss|\\.less)$" }]
   },
   "rulesDirectory": []
 }
