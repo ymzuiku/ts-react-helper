@@ -1,5 +1,6 @@
 # See https://help.github.com/articles/ignoring-files/ for more about ignoring files.
 
+**/react-app-env.d.ts
 **/app/uploads/*
 # dependencies
 **/node_modules
