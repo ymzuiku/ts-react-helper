@@ -4,7 +4,11 @@
   "jsRules": {
     "react-hooks/exhaustive-deps": false
   },
+  "rulesDirectory": [],
   "rules": {
+    "no-empty-interface": false,
+    "no-object-literal-type-assertion": false,
+    "no-non-null-assertion": false,
     "strict-comparisons": false,
     "object-literal-sort-keys": false,
     "no-floating-promises": false,
@@ -33,6 +37,5 @@
     "variable-name": false,
     "file-name-casing": [false, "camel-case"],
     "no-import-side-effect": [false, { "ignore-module": "(\\.html|\\.css|\\.scss|\\.less)$" }]
-  },
-  "rulesDirectory": []
+  }
 }
