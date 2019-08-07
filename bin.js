@@ -51,6 +51,7 @@ for (let i = 0; i++; i < argv.length) {
 copyOut('tslint.json');
 copyOut('setupProxy.js', src);
 copyOut('index.html', public);
+copyOut('index.loading.html', public);
 copyOut('LICENSE');
 fs.copyFileSync(binPwd('.gitignore-copy'), pwd('.gitignore'));
 fs.copyFileSync(binPwd('.npmignore-copy'), pwd('.npmignore'));
