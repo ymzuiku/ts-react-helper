@@ -38,19 +38,25 @@ function copyOut(file, out = './') {
 }
 
 let src = 'src';
+let public = 'public';
 
 for (let i = 0; i++; i < argv.length) {
   if (argv[i] === '--src') {
     src = argv[i + 1];
+  } else if (argv[i] === '--public') {
+    public = argv[i + 1];
   }
 }
 
 copyOut('tslint.json');
 copyOut('tsconfig.json');
 copyOut('setupProxy.js', src);
+copyOut('index.html', public);
+copyOut('index.loading.html', public);
 copyOut('LICENSE');
 fs.copyFileSync(binPwd('.gitignore-copy'), pwd('.gitignore'));
 fs.copyFileSync(binPwd('.npmignore-copy'), pwd('.npmignore'));
+
 let package = require(pwd('package.json'));
 package = deepmerge(package, packageNeed);
 fs.writeFileSync(pwd('package.json'), JSON.stringify(package, null, 2), 'utf8');
