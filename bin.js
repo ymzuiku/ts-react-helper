@@ -46,6 +46,7 @@ for (let i = 0; i++; i < argv.length) {
 }
 
 copyOut('tslint.json');
+copyOut('tsconfig.json');
 copyOut('setupProxy.js', src);
 copyOut('LICENSE');
 fs.copyFileSync(binPwd('.gitignore-copy'), pwd('.gitignore'));

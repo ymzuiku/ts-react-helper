@@ -4,7 +4,16 @@
   "jsRules": {
     "react-hooks/exhaustive-deps": false
   },
+  "rulesDirectory": [],
   "rules": {
+    "no-reference": false,
+    "no-unused-expression": false,
+    "no-empty-interface": false,
+    "no-object-literal-type-assertion": false,
+    "no-non-null-assertion": false,
+    "strict-comparisons": false,
+    "object-literal-sort-keys": false,
+    "no-floating-promises": false,
     "prefer-for-of": false,
     "prefer-switch": false,
     "comment-format": false,
@@ -29,7 +38,9 @@
     "arrow-return-shorthand": false,
     "variable-name": false,
     "file-name-casing": [false, "camel-case"],
-    "no-import-side-effect": [true, { "ignore-module": "(\\.html|\\.css|\\.scss|\\.less)$" }]
-  },
-  "rulesDirectory": []
+    "no-import-side-effect": [
+      false,
+      { "ignore-module": "(\\.html|\\.css|\\.scss|\\.less)$" }
+    ]
+  }
 }
