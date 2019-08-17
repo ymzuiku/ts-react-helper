@@ -1,14 +1,13 @@
 #!/usr/bin/env node
 
-const fs = require('fs');
+const fs = require('fs-extra');
 const path = require('path');
 const pwd = (...args) => path.resolve(process.cwd(), ...args);
 const binPwd = (...args) => path.resolve(__dirname, ...args);
 const argv = process.argv.splice(2);
-// const exec = require('child_process').exec;
 const deepmerge = require('deepmerge');
 
-const packageNeed = {
+export const packageNeed = {
   husky: {
     hooks: {
       'pre-commit': 'yarn lint-ci',
@@ -19,23 +18,24 @@ const packageNeed = {
     'src/**/*.tsx': ['git add', 'tslint'],
   },
   scripts: {
-    lib: 'tscu example/src/lib --outDir lib',
+    copy:
+      "sfs cp 'config/paths.js, config/webpack.config.js, config/webpackDevServer.config.js' node_modules/react-scripts/config",
+    start: 'yarn copy && react-scripts start',
+    build: 'yarn copy && GENERATE_SOURCEMAP=false react-scripts build',
+    test: 'react-scripts test',
+    eject: 'react-scripts eject',
+    lib: 'tscu example/src/navar --outDir lib',
     'lint-ci': 'lint-staged',
   },
   devDependencies: {
-    'http-proxy-middleware': '^0.19.1',
-    husky: '^2.4.1',
-    'lint-staged': '^8.2.1',
-    tslint: '^5.17.0',
-    tscu: '^0.0.1',
-    'tslint-config-prettier': '^1.18.0',
-    'tslint-react': '^4.0.0',
+    '@typescript-eslint/parser': '^1.13.0',
+    'eslint-config-airbnb': '^18.0.0',
+    'eslint-config-prettier': '^6.0.0',
+    'eslint-plugin-import': '^2.18.2',
+    'eslint-plugin-prettier': '^3.1.0',
+    prettier: '^1.18.2',
   },
 };
-
-function copyOut(file, out = './') {
-  fs.copyFileSync(binPwd(file), pwd(out, file));
-}
 
 let src = 'src';
 let public = 'public';
@@ -48,14 +48,14 @@ for (let i = 0; i++; i < argv.length) {
   }
 }
 
-copyOut('tslint.json');
-copyOut('setupProxy.js', src);
-copyOut('index.html', public);
-copyOut('index.loading.html', public);
-copyOut('LICENSE');
-fs.copyFileSync(binPwd('.gitignore-copy'), pwd('.gitignore'));
-fs.copyFileSync(binPwd('.npmignore-copy'), pwd('.npmignore'));
+fs.copySync(binPwd('tslint.json'), pwd('tslint.json'));
+fs.copySync(binPwd('index.html'), pwd(public, 'index.html'));
+fs.copySync(binPwd('LICENSE'), pwd('LICENSE'));
+fs.copySync(binPwd('.gitignore-copy'), pwd('.gitignore'));
+fs.copySync(binPwd('.npmignore-copy'), pwd('.npmignore'));
+fs.copySync(binPwd('confiy'), pwd('./'));
+fs.copySync(binPwd('.eslintrc'), pwd(src, './eslintrc'));
+fs.copySync(binPwd('.prettierrc'), pwd('.prettierrc'));
 
-let package = require(pwd('package.json'));
-package = deepmerge(package, packageNeed);
+const package = deepmerge(require(pwd('package.json')), packageNeed);
 fs.writeFileSync(pwd('package.json'), JSON.stringify(package, null, 2), 'utf8');

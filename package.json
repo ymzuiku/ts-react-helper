@@ -5,9 +5,18 @@
   "repository": "git@github.com:ymzuiku/tslint-react-cli.git",
   "license": "MIT",
   "dependencies": {
-    "deepmerge": "^3.2.1"
+    "deepmerge": "^3.2.1",
+    "fs-extra": "^8.1.0"
   },
   "bin": {
     "init": "bin.js"
+  },
+  "devDependencies": {
+    "@typescript-eslint/parser": "^1.13.0",
+    "eslint-config-airbnb": "^18.0.0",
+    "eslint-config-prettier": "^6.0.0",
+    "eslint-plugin-import": "^2.18.2",
+    "eslint-plugin-prettier": "^3.1.0",
+    "prettier": "^1.18.2"
   }
 }

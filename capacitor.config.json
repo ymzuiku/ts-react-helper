@@ -1,0 +1,10 @@
+{
+  "appId": "com.ts.react",
+  "appName": "react",
+  "bundledWebRuntime": false,
+  "npmClient": "yarn",
+  "webDir": "public",
+  "server": {
+    "url": "http://www.baidu.com"
+  }
+}
