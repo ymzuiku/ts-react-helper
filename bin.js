@@ -7,7 +7,7 @@ const binPwd = (...args) => path.resolve(__dirname, ...args);
 const argv = process.argv.splice(2);
 const deepmerge = require('deepmerge');
 
-export const packageNeed = {
+const packageNeed = {
   husky: {
     hooks: {
       'pre-commit': 'yarn lint-ci',
@@ -33,8 +33,10 @@ export const packageNeed = {
     'eslint-config-prettier': '^6.0.0',
     'eslint-plugin-import': '^2.18.2',
     'eslint-plugin-prettier': '^3.1.0',
+    'shell-fs': '^1.0.0',
     prettier: '^1.18.2',
   },
+  repository: 'git@github.com:ymzuiku/tslint-react-cli.git',
 };
 
 let src = 'src';
@@ -48,12 +50,12 @@ for (let i = 0; i++; i < argv.length) {
   }
 }
 
-fs.copySync(binPwd('tslint.json'), pwd('tslint.json'));
+fs.copySync(binPwd('tsconfig.json'), pwd('tsconfig.json'));
 fs.copySync(binPwd('index.html'), pwd(public, 'index.html'));
 fs.copySync(binPwd('LICENSE'), pwd('LICENSE'));
 fs.copySync(binPwd('.gitignore-copy'), pwd('.gitignore'));
 fs.copySync(binPwd('.npmignore-copy'), pwd('.npmignore'));
-fs.copySync(binPwd('confiy'), pwd('./'));
+fs.copySync(binPwd('config'), pwd('./config'));
 fs.copySync(binPwd('.eslintrc'), pwd(src, './eslintrc'));
 fs.copySync(binPwd('.prettierrc'), pwd('.prettierrc'));
 
