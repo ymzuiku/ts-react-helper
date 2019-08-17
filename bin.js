@@ -56,7 +56,7 @@ fs.copySync(binPwd('LICENSE'), pwd('LICENSE'));
 fs.copySync(binPwd('.gitignore-copy'), pwd('.gitignore'));
 fs.copySync(binPwd('.npmignore-copy'), pwd('.npmignore'));
 fs.copySync(binPwd('config'), pwd('./config'));
-fs.copySync(binPwd('.eslintrc'), pwd(src, './eslintrc'));
+fs.copySync(binPwd('.eslintrc'), pwd(src, '.eslintrc'));
 fs.copySync(binPwd('.prettierrc'), pwd('.prettierrc'));
 
 const package = deepmerge(require(pwd('package.json')), packageNeed);
