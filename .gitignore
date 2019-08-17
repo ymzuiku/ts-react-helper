@@ -8,7 +8,6 @@
 **/.pnp
 **/.pnp.js
 **/tmp
-**/react-app-env.d.ts
 
 # testing
 **/coverage
