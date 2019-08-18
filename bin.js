@@ -28,13 +28,13 @@ const packageNeed = {
     'lint-ci': 'lint-staged',
   },
   devDependencies: {
-    '@typescript-eslint/parser': '^1.13.0',
-    'eslint-config-airbnb': '^18.0.0',
-    'eslint-config-prettier': '^6.0.0',
-    'eslint-plugin-import': '^2.18.2',
-    'eslint-plugin-prettier': '^3.1.0',
-    'shell-fs': '^1.0.0',
+    tslint: '^5.17.0',
+    'tslint-config-prettier': '^1.18.0',
+    'tslint-react': '^4.0.0',
+    husky: '^2.4.1',
+    'lint-staged': '^8.2.1',
     prettier: '^1.18.2',
+    'shell-fs': '^1.0.0',
   },
   repository: 'git@github.com:ymzuiku/tslint-react-cli.git',
 };
@@ -56,7 +56,7 @@ fs.copySync(binPwd('LICENSE'), pwd('LICENSE'));
 fs.copySync(binPwd('.gitignore-copy'), pwd('.gitignore'));
 fs.copySync(binPwd('.npmignore-copy'), pwd('.npmignore'));
 fs.copySync(binPwd('config'), pwd('./config'));
-fs.copySync(binPwd('.eslintrc'), pwd(src, '.eslintrc'));
+fs.copySync(binPwd('tslint.json'), pwd('tslint.json'));
 fs.copySync(binPwd('.prettierrc'), pwd('.prettierrc'));
 
 const package = deepmerge(require(pwd('package.json')), packageNeed);
