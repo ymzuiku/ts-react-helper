@@ -41,6 +41,9 @@ const postcssNormalize = require('postcss-normalize');
 
 const appPackageJson = require(paths.appPackageJson);
 
+// 用于判断是否属于服务端代码
+const isService = process.env.SERVICE === 'true';
+
 // Source maps are resource heavy and can cause out of memory issue for large source files.
 const shouldUseSourceMap = process.env.GENERATE_SOURCEMAP !== 'false';
 // Some apps do not need the benefits of saving a web request, so not inlining the chunk
@@ -48,7 +51,7 @@ const shouldUseSourceMap = process.env.GENERATE_SOURCEMAP !== 'false';
 const shouldInlineRuntimeChunk = process.env.INLINE_RUNTIME_CHUNK !== 'false';
 
 const imageInlineSizeLimit = parseInt(
-  process.env.IMAGE_INLINE_SIZE_LIMIT || '10000'
+  process.env.IMAGE_INLINE_SIZE_LIMIT || '10000',
 );
 
 // Check if TypeScript is setup
@@ -136,7 +139,7 @@ module.exports = function(webpackEnv) {
           options: {
             sourceMap: true,
           },
-        }
+        },
       );
     }
     return loaders;
@@ -274,19 +277,23 @@ module.exports = function(webpackEnv) {
       splitChunks: {
         chunks: 'all', // all, async, initial
         name: false,
-        minSize: 300,
+        minSize: 2047,
+        maxAsyncRequests: 5,
         cacheGroups: {
-          vendor_module: {
-            test: /(UMAnalytics|barm|cssin|node_modules)/,
+          // hybird 才会用到的资源
+          vendor_capacitor: {
+            test: /(capacitor)/,
+            name: 'capacitor',
+          },
+          // 固定依赖
+          vendor_module_pkg: {
+            test: /(node_modules|react|immer|pkg\/(?!BigComponent))/,
             name: 'module',
           },
-          vendor_comp: {
-            test: /components\/(Icon|List)/,
-            name: 'comp',
-          },
-          vendor_cont: {
-            test: /containers\/(AppLayout|AppTabBar|UserStatusBar)/,
-            name: 'cont',
+          // 有意义的首屏资源，首屏相关页面+组件+容器+排除大组件、大容器
+          vendor_FMP: {
+            test: /(pages\/(Login|Learn|LearnDetail)|components\/(?!BigComponent)|containers\/(?!BigContainers)|actions\/(?!BigActions))/,
+            name: 'FMP',
           },
         },
       },
@@ -300,7 +307,7 @@ module.exports = function(webpackEnv) {
       // if there are any conflicts. This matches Node resolution mechanism.
       // https://github.com/facebook/create-react-app/issues/253
       modules: ['node_modules', paths.appNodeModules].concat(
-        modules.additionalModulePaths || []
+        modules.additionalModulePaths || [],
       ),
       // These are the reasonable defaults supported by the Node ecosystem.
       // We also include JSX as a common component filename extension to support
@@ -410,7 +417,7 @@ module.exports = function(webpackEnv) {
               loader: require.resolve('babel-loader'),
               options: {
                 customize: require.resolve(
-                  'babel-preset-react-app/webpack-overrides'
+                  'babel-preset-react-app/webpack-overrides',
                 ),
                 // @remove-on-eject-begin
                 babelrc: false,
@@ -430,7 +437,7 @@ module.exports = function(webpackEnv) {
                     'babel-preset-react-app',
                     'react-dev-utils',
                     'react-scripts',
-                  ]
+                  ],
                 ),
                 // @remove-on-eject-end
                 plugins: [
@@ -482,7 +489,7 @@ module.exports = function(webpackEnv) {
                     'babel-preset-react-app',
                     'react-dev-utils',
                     'react-scripts',
-                  ]
+                  ],
                 ),
                 // @remove-on-eject-end
                 // If an error happens in a package, it's possible to be
@@ -534,7 +541,7 @@ module.exports = function(webpackEnv) {
                   importLoaders: 2,
                   sourceMap: isEnvProduction && shouldUseSourceMap,
                 },
-                'sass-loader'
+                'sass-loader',
               ),
               // Don't consider CSS imports dead code even if the
               // containing package claims to have no side effects.
@@ -553,7 +560,7 @@ module.exports = function(webpackEnv) {
                   modules: true,
                   getLocalIdent: getCSSModuleLocalIdent,
                 },
-                'sass-loader'
+                'sass-loader',
               ),
             },
             // "file" loader makes sure those assets get served by WebpackDevServer.
@@ -602,8 +609,8 @@ module.exports = function(webpackEnv) {
                   minifyURLs: true,
                 },
               }
-            : undefined
-        )
+            : undefined,
+        ),
       ),
       // Inlines the webpack runtime script. This script is too small to warrant
       // a network request.

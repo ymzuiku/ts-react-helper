@@ -6,6 +6,8 @@
   },
   "rulesDirectory": [],
   "rules": {
+    "prefer-conditional-expression": false,
+    "no-console": [true, "log", "warn"],
     "no-reference": false,
     "no-empty": false,
     "no-unused-expression": false,

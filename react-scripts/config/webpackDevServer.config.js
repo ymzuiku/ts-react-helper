@@ -89,12 +89,12 @@ module.exports = function(proxy, allowedHost) {
       disableDotRule: true,
     },
     public: allowedHost,
-    proxy:{
+    proxy: {
       ...proxy,
       '/test': {
         target: 'https://www.baidu.com',
         changeOrigin: true,
-      }
+      },
     },
     before(app, server) {
       if (fs.existsSync(paths.proxySetup)) {

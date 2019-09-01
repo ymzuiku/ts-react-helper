@@ -5,6 +5,6 @@
   "npmClient": "yarn",
   "webDir": "public",
   "server": {
-    "url": "http://www.baidu.com"
+    "url": "http://www.baidu.com?_os_ios_"
   }
 }
