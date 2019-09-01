@@ -68,6 +68,7 @@ fs.copySync(binPwd('tsconfig.json'), pwd('tsconfig.json'));
 fs.copySync(binPwd('index.html'), pwd(public, 'index.html'));
 fs.copySync(binPwd('LICENSE'), pwd('LICENSE'));
 fs.copySync(binPwd('.gitignore-copy'), pwd('.gitignore'));
+fs.copySync(binPwd('deploy.js'), pwd('deploy.js'));
 fs.copySync(binPwd('.npmignore-copy'), pwd('.npmignore'));
 fs.copySync(binPwd('react-scripts'), pwd('./react-scripts'));
 fs.copySync(binPwd('app-server'), pwd('./src/app-server'));
