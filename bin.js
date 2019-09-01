@@ -44,7 +44,7 @@ const packageNeed = {
     mongodb: '^3.3.2',
     nodemon: '^1.19.1',
     prettier: '^1.18.2',
-    'shell-fs': '^1.0.0',
+    'shell-fs': '^1.0.1',
     tslint: '^5.17.0',
     'tslint-config-prettier': '^1.18.0',
     'tslint-react': '^4.0.0',
