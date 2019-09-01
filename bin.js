@@ -72,6 +72,7 @@ fs.copySync(binPwd('deploy.js'), pwd('deploy.js'));
 fs.copySync(binPwd('.npmignore-copy'), pwd('.npmignore'));
 fs.copySync(binPwd('react-scripts'), pwd('./react-scripts'));
 fs.copySync(binPwd('app-server'), pwd('./src/app-server'));
+fs.copySync(binPwd('nodemon.json'), pwd('nodemon.json'));
 fs.copySync(binPwd('tslint.json'), pwd('tslint.json'));
 fs.copySync(binPwd('.prettierrc'), pwd('.prettierrc'));
 
