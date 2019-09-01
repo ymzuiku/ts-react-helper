@@ -25,7 +25,7 @@ const packageNeed = {
     server:
       'yarn server:build && NODE_ENV=development node dist/app-server/main.js',
     'server:watch':
-      'concurrently --handle-input "tsc -w -p src/app-server/tsconfig.server.json" "NODE_ENV=development wait-on dist/app-server/main.js && nodemon"',
+      'concurrently --handle-input "tsc -w -p src/app-server/tsconfig.server.json" "wait-on dist/app-server/main.js && NODE_ENV=development nodemon"',
     'server:build': 'tsc -p src/app-server/tsconfig.server.json',
     'server:pm2':
       'tsc -p src/app-server/tsconfig.server.json && NODE_ENV=production pm2 start dist/app-server/main.js --name=bdc --watch -i 0',
